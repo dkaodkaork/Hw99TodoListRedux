@@ -1,7 +1,7 @@
 import React from "react";
+import styled from "styled-components";
 import AddTodo from "../components/AddTodo";
 import TodoBox from "../components/TodoBox";
-import styled from "styled-components";
 
 const Home = () => {
   return (
