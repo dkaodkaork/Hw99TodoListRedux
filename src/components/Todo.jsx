@@ -1,23 +1,12 @@
 import React from "react";
-import CustomButton from "./CustomButton";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
+import CustomButton from "./CustomButton";
 
 const Todo = ({ title, isDone, body, id, hard, handleDelte, doneTodo }) => {
-  //  수정전: todo={todo} 객체 하나를 통으로 받으면 porps로 받아서 사용할때 todo.id, todo.프로퍼티 이런식으로 사용  수정후:  ...todo 로 넘겨준 porps를 각각 받아서 todo. 을안적어도됨   => 만약에 여기서 또 자식 porp으로 todo 를 넘겨줄 일이 생기면?
-  // const navigate = useNavigate();
-  // const {title, isDone, body, id,hard} = todo    => 구조 분해할당
   return (
     <StTodoCard>
       <div>
-        {/* <button
-          onClick={() => {
-            navigate("/detail");
-          }}
-        >
-          홈
-        </button> */}
         <StTempBox>
           <Link to={`/detail/${id}`}>
             <h2>{title}</h2>

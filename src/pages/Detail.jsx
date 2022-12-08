@@ -1,19 +1,20 @@
-// src/pages/home.js
 import React from "react";
-import { useNavigate } from "react-router-dom"; // 어떤 버튼이나 component를 눌렀을 때 페이지로 이동하게 만들 때 사용하는 hook
+import { useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import CustomButton from "../components/CustomButton";
-import AddTodo from "../components/AddTodo";
 
 const Detail = () => {
   const navigate = useNavigate();
+  // 어떤 버튼이나 component를 눌렀을 때 페이지로 이동하게 만들 때 사용하는 hook
+
   const todolist = useSelector((state) => state.todos.todos);
-  console.log(todolist);
 
   const param = useParams();
+
   const todo = todolist.find((value) => value.id === param.id);
+
   return (
     <StDetail>
       <StBox1>

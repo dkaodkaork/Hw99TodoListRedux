@@ -1,6 +1,6 @@
 import React from "react";
-import styled from "styled-components";
 import Todo from "./Todo";
+import styled from "styled-components";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteTodo, doneTodo } from "../redux/modules/todos";
 
@@ -11,16 +11,11 @@ const TodoBox = () => {
 
   const deleteTodoHandler = (id) => {
     dispatch(deleteTodo(id));
-    // console.log(id);
   };
 
   const doneTodoHandler = (id) => {
     dispatch(doneTodo(id));
   };
-
-  // TodoBox.defaultProps = {
-  //   todo: [],
-  // };
 
   return (
     <StTodoList>
@@ -35,7 +30,6 @@ const TodoBox = () => {
               <Todo
                 handleDelte={deleteTodoHandler}
                 doneTodo={doneTodoHandler}
-                // todo={todo}
                 {...todo}
                 key={todo.id}
               ></Todo>
@@ -57,7 +51,6 @@ const TodoBox = () => {
               <Todo
                 handleDelte={deleteTodoHandler}
                 doneTodo={doneTodoHandler}
-                // todo={todo} // (0) {...todo} 로 넘겨서 스프레드 연산자를 이용해서 todos 배열안의 객체원소 todo의 각 프로퍼티를의 key값을 하나씩 넘겨준다
                 {...todo}
                 key={todo.id}
               ></Todo>

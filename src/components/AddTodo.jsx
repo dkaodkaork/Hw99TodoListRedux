@@ -3,20 +3,21 @@ import styled from "styled-components";
 import { useDispatch } from "react-redux";
 import { useRef, useState } from "react";
 import uuid from "react-uuid";
-// import { v4 as uuidv4 } from "uuid";
+// 고유한 id 값을 생성하기 위해 uuid 패키지를 이용
 import { addTodo } from "../redux/modules/todos";
 
 const AddTodo = () => {
-  // const [title, setTitle] = useState("");        /// (0) 상태관리를 한번에 묶어서 해보자
-  // const [body, setBody] = useState("");
-  const id = uuid().slice(0, 5); //  const id = useRef(0) => id: id.current,  id.current +=1
-  // const id = useRef(3);
-
+  const id = uuid().slice(0, 5);
+  // 36개의 문자로 이루어진 uuid값을 5자리만 이용하기 위해서 Slice로 잘라줌.
   // console.log(id);
 
-  const titleInput = useRef(); // useRef함수를 호출해서 반환값을 titleInput이라는 상수에 담아주자 React.MutableRefObject<undefined>가 저장된다  => html Dom 요소에 접근할 수 있는 기능
+  const titleInput = useRef();
   const bodyInput = useRef();
   const hardInput = useRef();
+  // useRef함수를 호출해서 반환값을 titleInput이라는 상수에 담음. React.MutableRefObject<undefined>가 저장됨  => html Dom 요소에 접근할 수 있는 기능,
+  // dom 요소를 선택하는 ref 객체는 현재 가리키는 값을 Current라는 property 로 불러와서 사용할 수 있다
+
+  const dispatch = useDispatch();
 
   const [todo, setTodo] = useState({
     id: 0,
@@ -27,39 +28,29 @@ const AddTodo = () => {
   });
 
   const onChangeHandler = (e) => {
-    //   (3) onchange도 하나로 만들어주자 e객체를 줌
-    // console.log(e.target.name);    콘솔에 input의 name과 value를 찍어보자
-    // console.log(e.target.value);
-
-    setTodo({ ...todo, [e.target.name]: e.target.value }); //   e.target.name 이 결국 내가 접근하고자 하는 상태의 이름이랑 같다.
+    setTodo({ ...todo, [e.target.name]: e.target.value });
   };
-
-  // console.log(id);
-
-  // const todos = useSelector((state) => state.todos.todos);
-  // console.log(todos[0]["id"]);
-
-  const dispatch = useDispatch();
+  // e.target.name(input에 지정해준 name)이 내가 접근하고자 하는 상태의 이름이랑 같다.
 
   const addTodoHandler = () => {
     if (todo.title && todo.body && todo.hard) {
       // focus를 줘보자
 
       dispatch(addTodo({ ...todo, id }));
-      // setBody(""); // input 값 value에 상태로 관리하는 Body 값을 주어 add 후 value 값을 빈값으로 상태변경 =>화면렌더링 이후 useEffect로 처리 할수 있는가?
-      // setTitle("");
       setTodo({
         title: "",
         body: "",
         hard: "",
       });
+      // input 값 입력후 초기화
     } else if (!todo.title) {
-      return titleInput.current.focus(); // dom 요소를 선택하는 ref 객체는 현재 가리키는 값을 Current라는 property 로 불러와서 사용할 수 있다
+      return titleInput.current.focus();
     } else if (!todo.body) {
       return bodyInput.current.focus();
     } else {
       return hardInput.current.focus();
     }
+    // input에 입력을 하지 않으면 focus 주기
   };
 
   return (
@@ -71,12 +62,6 @@ const AddTodo = () => {
           name="title"
           placeholder="제목을 입력하세요"
           value={todo.title}
-          // onChange={(e) => {             ///  (1)
-          //   setTodo({
-          //     title: e.target.value,
-          //     body:todo.body
-          //   });
-          // }}
           onChange={onChangeHandler}
         ></StInput>
         <StLabel>내용</StLabel>
@@ -85,12 +70,6 @@ const AddTodo = () => {
           name="body"
           placeholder="내용을 입력하세요"
           value={todo.body}
-          // onChange={(e) => {           ///   (2) 스프레드 연산자 사용
-          //   setTodo({
-          //     ...todo,               /// 순서 중요  원래 있던 state를 먼저 펼쳐주고, 병경하고자 하는 property 를 뒤에 적어 덮어씌운다
-          //     body: e.target.value,
-          //   });
-          // }}
           onChange={onChangeHandler}
         ></StInput>
         <StLabel>난이도</StLabel>
