@@ -5,10 +5,10 @@ import styled from "styled-components";
 
 const Home = () => {
   return (
-    <StLayout>
+    <>
       <AddTodo></AddTodo>
       <TodoBox></TodoBox>
-    </StLayout>
+    </>
   );
 };
 
