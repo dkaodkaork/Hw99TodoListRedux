@@ -19,28 +19,26 @@ const Detail = () => {
     if (!todo) {
       navigate("/");
     }
-  }, [todo, navigate]);
+  }, []);
 
-  if (todo) {
-    return (
-      <StDetail>
-        <StBox1>
-          <div>ID: {todo.id}</div>
-          <CustomButton
-            onClick={() => navigate("/")}
-            name="이전으로"
-            color="#76c4b5"
-          ></CustomButton>
-        </StBox1>
-        <div>
-          <h1>{todo.title}</h1>
-        </div>
-        <div>
-          <p>{todo.body}</p>
-        </div>
-      </StDetail>
-    );
-  }
+  return (
+    <StDetail>
+      <StBox1>
+        <div>ID: {todo?.id}</div>
+        <CustomButton
+          onClick={() => navigate("/")}
+          name="이전으로"
+          color="#76c4b5"
+        ></CustomButton>
+      </StBox1>
+      <div>
+        <h1>{todo?.title}</h1>
+      </div>
+      <div>
+        <p>{todo?.body}</p>
+      </div>
+    </StDetail>
+  );
 };
 export default Detail;
 const StDetail = styled.div`
