@@ -1,5 +1,3 @@
-// src/shared/Layout.js
-
 import React from "react";
 import styled from "styled-components";
 
@@ -62,7 +60,7 @@ const StContainer = styled.div`
   align-items: center; /* 수직축 방향 정렬  */
 
   padding: 0 20px 0 20px;
-  margin-bottom: 15px; /* 바깥 여백 헤더와 form 태그 사이 간격  */
+  margin-bottom: 15px; /* 바깥 여백 헤더와 form 태그 사이 간격  **/
 
   border-radius: 10px;
 `;

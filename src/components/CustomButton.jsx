@@ -22,5 +22,5 @@ const StButton = styled.button`
   background-color: ${(props) => props.backColor};
 
   border: none;
-  border-radius: 10px;
+  border-radius: 11px;
 `;
